@@ -15,6 +15,25 @@ const el = {
   exampleBtn: $('exampleBtn'),
 };
 
+// ---------- localStorage ----------
+const STORAGE_KEY = 'typing-asmr-text';
+
+function loadStoredText() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) el.source.value = stored;
+  } catch (e) { console.warn('localStorage read failed', e); }
+}
+
+function saveText() {
+  try {
+    localStorage.setItem(STORAGE_KEY, el.source.value);
+  } catch (e) { console.warn('localStorage write failed', e); }
+}
+
+loadStoredText();
+el.source.addEventListener('input', saveText);
+
 // ---------- helpers ----------
 const rand = (a, b) => a + Math.random() * (b - a);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
