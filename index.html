@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing ASMR</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌨️</text></svg>" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="panel" aria-label="Settings">
+        <h1>Typing ASMR</h1>
+
+        <label class="field">
+          <span>Text to type</span>
+          <textarea id="source" rows="9" placeholder="Paste your text here. Blank lines start a new paragraph."></textarea>
+        </label>
+
+        <fieldset class="field">
+          <legend>Speed (words per minute)</legend>
+          <div class="pair">
+            <label>from <input id="minWpm" type="number" min="5" max="400" value="45" /></label>
+            <label>to <input id="maxWpm" type="number" min="5" max="400" value="85" /></label>
+          </div>
+          <p class="hint">Speed drifts smoothly inside this range, with pauses at punctuation and paragraph breaks.</p>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Sound</legend>
+          <label class="row">
+            <span>Per paragraph</span>
+            <select id="paraMode">
+              <option value="same">Same sound everywhere</option>
+              <option value="cycle" selected>Cycle through selected sounds</option>
+              <option value="random">Random sound each paragraph</option>
+            </select>
+          </label>
+          <label class="row">
+            <span>Volume <output id="volOut">40%</output></span>
+            <input id="volume" type="range" min="0" max="100" value="40" />
+          </label>
+          <label class="row">
+            <span>Pitch wobble <output id="pitchOut">4%</output></span>
+            <input id="pitch" type="range" min="0" max="15" value="4" />
+          </label>
+          <label class="check"><input id="spaceSound" type="checkbox" checked /> Use the matching space-bar sound when available</label>
+          <label class="check"><input id="typos" type="checkbox" checked /> Make the occasional typo and fix it</label>
+          <details>
+            <summary>Choose sounds <span id="soundCount"></span></summary>
+            <div id="soundList" class="sounds"></div>
+            <p class="hint">Ticking a sound plays a preview. Keyboard sounds (hi75, halo, uhk, asus) feel best for typing.</p>
+          </details>
+        </fieldset>
+
+        <div class="actions">
+          <button id="start" class="primary">Start typing</button>
+          <button id="pause" disabled>Pause</button>
+          <button id="reset">Reset</button>
+        </div>
+        <p id="status" class="status" aria-live="polite">Ready.</p>
+      </section>
+
+      <section class="desk" aria-label="Typing output">
+        <div id="page" class="page" tabindex="0"><span id="typed"></span><span class="caret" id="caret"></span></div>
+        <div class="meter"><span id="meterText">0 wpm</span><div class="bar"><i id="meterBar"></i></div></div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
