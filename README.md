@@ -54,9 +54,9 @@ bun run preview
 
 ## Tech Stack
 
-- **Vite** — dev server & bundler
-- **button-sounds** — mechanical keyboard audio samples by Josh Comeau ([buttons.joshwcomeau.com](https://buttons.joshwcomeau.com/))
-- Vanilla JS / CSS — no framework overhead
+- **Vite** - dev server & bundler
+- **button-sounds** - mechanical keyboard audio samples by Josh Comeau ([buttons.joshwcomeau.com](https://buttons.joshwcomeau.com/))
+- Vanilla JS / CSS - no framework overhead
 
 ## Credits
 

@@ -12,6 +12,7 @@ const el = {
   start: $('start'), pause: $('pause'), reset: $('reset'), status: $('status'),
   page: $('page'), typed: $('typed'), caret: $('caret'),
   meterText: $('meterText'), meterBar: $('meterBar'),
+  exampleBtn: $('exampleBtn'),
 };
 
 // ---------- helpers ----------
@@ -39,6 +40,17 @@ function neighbour(ch) {
   }
   return null;
 }
+
+// ---------- example text ----------
+const EXAMPLE_TEXT = `The rain in Spain stays mainly in the plain.
+
+A quick brown fox jumps over the lazy dog. The five boxing wizards jump quickly.
+
+Mechanical keyboards feel different - each switch has its own personality. Clicky, tactile, linear. Some people prefer the sharp snap of a blue switch, others the smooth glide of a red. There is no wrong choice, only what feels right under your fingers.
+
+Typing is a rhythm. A conversation between thought and finger. The sound becomes background music for thinking.
+
+Paragraph breaks let you breathe. The machine pauses, waits. Then continues.`;
 
 // ---------- sound picker ----------
 const DEFAULT_SOUNDS = new Set(['hi75-soft', 'halo-soft', 'uhk-soft']);
@@ -233,6 +245,12 @@ el.reset.addEventListener('click', () => {
   el.pause.disabled = true; el.pause.textContent = 'Pause';
   el.caret.classList.remove('typing');
   setStatus('Ready.');
+});
+
+el.exampleBtn.addEventListener('click', () => {
+  el.source.value = EXAMPLE_TEXT;
+  el.source.focus();
+  setStatus('Example loaded.');
 });
 
 // warm up the default sounds so the first keystroke isn't late
