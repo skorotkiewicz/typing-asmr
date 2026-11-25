@@ -62,6 +62,15 @@ bun run preview
 
 Keyboard sounds sourced from the excellent [button-sounds](https://www.npmjs.com/package/button-sounds) package by Josh Comeau. Check out the interactive demo at [buttons.joshwcomeau.com](https://buttons.joshwcomeau.com/).
 
+## Alternative Layout (Panel-Focused)
+
+The default layout puts the typing output (desk) as the main area. For an ASMR-focused experience where the controls are dominant, apply this patch:
+
+```bash
+patch -p1 < panel-first.patch    # apply
+patch -p1 -R < panel-first.patch # revert
+```
+
 ## License
 
 MIT - do whatever you want.
