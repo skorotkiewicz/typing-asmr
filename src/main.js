@@ -7,7 +7,7 @@ const el = {
   source: $('source'), minWpm: $('minWpm'), maxWpm: $('maxWpm'),
   paraMode: $('paraMode'), volume: $('volume'), volOut: $('volOut'),
   pitch: $('pitch'), pitchOut: $('pitchOut'),
-  spaceSound: $('spaceSound'), typos: $('typos'),
+  spaceSound: $('spaceSound'), typos: $('typos'), loop: $('loop'),
   soundList: $('soundList'), soundCount: $('soundCount'),
   start: $('start'), pause: $('pause'), reset: $('reset'), status: $('status'),
   page: $('page'), typed: $('typed'), caret: $('caret'),
@@ -230,6 +230,21 @@ async function typeLoop(source, id) {
 }
 
 function finish() {
+  if (el.loop.checked) {
+    const source = el.source.value.replace(/\r\n?/g, '\n').trimEnd();
+    index = 0; text = ''; render();
+    plan = buildPlan(source);
+    typeLoop(source, runId);
+    return;
+  }
+
+  // if (el.loop.checked) {
+  //   index = 0; text = ''; render();
+  //   plan = buildPlan(el.source.value.replace(/\r\n?/g, '\n').trimEnd());
+  //   typeLoop(el.source.value.replace(/\r\n?/g, '\n').trimEnd(), runId);
+  //   return;
+  // }
+
   el.start.disabled = false; el.start.textContent = 'Type again';
   el.pause.disabled = true; el.pause.textContent = 'Pause';
   el.caret.classList.remove('typing');
