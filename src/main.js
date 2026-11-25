@@ -272,5 +272,17 @@ el.exampleBtn.addEventListener('click', () => {
   setStatus('Example loaded.');
 });
 
+// keyboard shortcuts (when not focused in textarea)
+document.addEventListener('keydown', (e) => {
+  if (e.target === el.source) return;
+  if (e.code === 'Space' || e.code === 'Enter') {
+    e.preventDefault();
+    if (!el.pause.disabled) el.pause.click();
+  } else if (e.code === 'Escape') {
+    e.preventDefault();
+    el.reset.click();
+  }
+});
+
 // warm up the default sounds so the first keystroke isn't late
 selectedSounds().forEach(ensureLoaded);
